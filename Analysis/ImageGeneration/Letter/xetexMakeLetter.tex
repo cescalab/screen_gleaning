@@ -1,0 +1,31 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{xltxtra}
+\setmainfont{Sloan.otf}
+
+\thispagestyle{empty}
+% Iphone 6S screen specs : H (104 mm), W (59 mm)
+\newlength{\width}
+\setlength{\width}{59mm}
+\newlength{\blineskip}
+\setlength{\blineskip}{1.2\width}
+\newlength{\height}
+\setlength{\height}{104mm}
+
+%Change the size of the letter
+\def \ratio{1}
+
+\usepackage[paperheight=\height ,paperwidth=\width ,right=0.1\width ,left=0.1\width ,top=0pt,bottom=0pt]{geometry}
+%we consider the width of biggest letter as the width of the page and set ledt and rigth margins as 10 percent of the length of the letter (should be 0.1em).
+\begin{document}
+\topskip0pt
+\vspace*{\fill}
+\begin{center}
+\fontsize{\ratio\linewidth}{\ratio\linewidth}\selectfont E
+\end{center}
+\vspace*{\fill}
+\end{document}

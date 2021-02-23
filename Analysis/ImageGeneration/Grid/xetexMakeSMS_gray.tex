@@ -1,0 +1,82 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage[many]{tcolorbox}
+\usepackage{lmodern}    % just to avoid font size warnings
+
+\usepackage{fancybox}%text boxes
+
+\usepackage{xltxtra}
+%\setmainfont{Sloan.otf}
+\setmainfont[BoldFont={helveticaneue.ttf}]{helveticaneue-light-001.ttf}
+
+%\usepackage{newtxsf}
+%\usepackage{fontspec}
+%\setmainfont{Helevetica Neue}[Scale=0.9]
+
+
+%Random number
+\usepackage[first=0, last=9]{lcg}
+\newcommand{\random}{\rand\arabic{rand}}
+
+%page color
+\definecolor{light-gray}{gray}{graytone}
+
+\thispagestyle{empty}
+
+\newlength{\width}
+\setlength{\width}{scriptwidth}
+\newlength{\blineskip}
+\setlength{\blineskip}{1.2\width}
+\newlength{\height}
+\setlength{\height}{scriptheight}
+
+%Change the size of the letter
+\def \ratio{0.04}
+
+%\cornersize{.5}%can tweak the curve of ovalbox with this (more tweak on package description)
+
+
+\newtcolorbox{mybox}[1][]{
+    width=\width,
+    arc=0pt,
+%    auto outer arc,
+    boxsep=0cm,
+    toprule=1pt,
+    leftrule=0.1pt,
+    bottomrule=0.1pt,
+    rightrule=0.1pt,
+    colframe=black,
+    colback=light-gray,
+    fontupper=\raggedright\fontsize{\ratio\linewidth}{\ratio\linewidth}\itshape,
+    breakable,
+    nobeforeafter,
+    enhanced jigsaw,
+    opacityframe=1,
+    opacityback=1
+}
+
+\usepackage[paperheight=\height ,paperwidth=\width ,right=0.1\width ,left=0.1\width ,top=0pt,bottom=0pt,margin=0pt]{geometry}
+%we consider the width of biggest letter as the width of the page and set ledt and rigth margins as 10 percent of the length of the letter (should be 0.1em).
+\begin{document}
+\topskip0pt
+\begin{center}
+\vspace*{15pt}
+
+\begin{mybox}[]
+\setlength\arrayrulewidth{10pt}
+\centering
+%\renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|}
+        \hline\vspace{-10pt}\\
+        &
+        \hline
+        \end{tabular}
+\end{mybox}
+\end{center}
+\vspace*{\fill}
+\end{document}

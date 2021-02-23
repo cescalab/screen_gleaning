@@ -1,0 +1,3 @@
+- Download TempestSDR from https://github.com/martinmarinov/TempestSDR
+- Replace Main.java in TempestSDR/JavaGUI/src/martin/tempest/gui
+- Recompile GUI

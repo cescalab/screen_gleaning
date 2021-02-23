@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+</head>
+<body bgcolor=#ffffff >
+     <style>
+        body
+        {
+            border: 0px;
+            padding: 0px;
+            overflow: hidden;
+            margin: 0px;
+		}
+		object 
+		{
+			width: 100%;
+			height: 100vh;
+		}
+	</style>
+
+	<object id="testImg" type="image/jpg"></object>
+	<!--<object id="testImg" type="application/pdf"></object>-->
+
+
+	<script>  
+
+		//document.getElementById("testImg").addEventListener("click", displayDate);
+
+		//function displayDate() {
+		//	document.getElementById("testImg").data = dir + name_file[y];
+		//	y = y + 1
+		//}
+
+		function loadDoc(dir,name_file) {
+			//loads all file names of a folder corresponding to criteria in searchFor into name_file
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					thing = this.responseText
+					searchFor = /.jpg</g
+					a=0;
+					b=0;
+					var str = "";
+			
+					// greps file for .jpg and then backs up leter by letter till you hot the file name and all
+					while ((dothtmls = searchFor.exec(thing)) != null ){
+						str = "";
+						console.log(dothtmls.index);
+
+						a = dothtmls.index;
+
+						while (thing[a]  != '>' ){
+							a--;
+						}
+						a++;
+						while(thing[a] != '<'){
+							str = str + thing[a];
+							a++;
+						}
+						console.log(str);
+						name_file.push(str);
+					}
+					document.getElementById("testImg").data = dir + name_file[0];
+				}
+			};
+			xhttp.open("GET", dir, true);
+			xhttp.send();	
+		}
+		
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+        dir = "grayfont_letters_00/"
+
+        y = 0;
+
+		name_file = new Array();
+		loadDoc(dir,name_file);
+		//name_file = ['gridDigit1.jpg','gridDigit2.jpg','gridDigit3.jpg','gridDigit4.jpg','gridDigit5.jpg','gridDigit6.jpg','gridDigit7.jpg','gridDigit8.jpg','gridDigit9.jpg','gridDigit10.jpg']
+
+
+        console.log('open: ');
+		var ws = new WebSocket("ws://10.0.0.2:8081/1");
+
+		ws.onopen = function (event) {
+		  console.log('Connection is open ...');
+		};
+
+		ws.onerror = function (err) {
+		  console.log('err: ', err);
+		}
+
+		ws.onmessage = function (event) {
+		  console.log(event.data);
+		  if (event.data.includes("next")) {
+		  	document.getElementById("testImg").data = dir + name_file[y];
+		  	ws.send("[\"2\", \""+ name_file[y] + "\"]");
+			y = y + 1;
+		  }
+		};
+
+		ws.onclose = function() {
+		  console.log("Connection is closed...");
+		}
+		
+    </script>
+</body>
+</html>
